@@ -14,7 +14,9 @@ use App\Http\Controllers\CartController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::get('/',function (){
+    return "<center><h1>Please use /login to Access the Product</h1></center>";
+});
 Route::get('/login', function () {
     return view('login');
 });
