@@ -18,24 +18,8 @@ class UserController extends Controller
         }
         else
         {
-            $req->session()->put('user',$user);
+            $req->session()->put('user',$user->email);
             return redirect('/products');
-        }
-    }
-    function cart(Request $req)
-    {
-        if(session()->has('id'))
-        {
-            $item=new Cart();
-            $item->quantity=$data->input('quantity');
-            $item->productId=$data->input('id');
-            $item->customerId=session()->get('id');
-            $item->save();
-            return redirect()->back()->with('success','Item added');
-        } 
-        else
-        {
-            return redirect('login')->with('success', 'Congrats!');
         }
     }
 }

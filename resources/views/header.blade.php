@@ -1,6 +1,14 @@
 <?php
-//  use APP\Http\Controllers\ProductController;
-//  $total= ProductController::CartItem();
+// use App\Models\Cart; // Assuming you have a Cart model for the cart table
+// $cartCount = Cart::count();
+use App\Models\Cart;
+use Illuminate\Support\Facades\Session;
+
+// Retrieve the user identifier from the session
+$userId = Session::get('user');
+
+// Fetch the cart count for the user
+$cartCount = Cart::where('customerId', $userId)->count();
 ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
   <div class="container-fluid">
@@ -23,7 +31,7 @@
           </form>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-light" href="#">cart(0)</a>
+          <a class="nav-link text-light" href="#">cart(({{ $cartCount }}))</a>
         </li>
       </ul>
       

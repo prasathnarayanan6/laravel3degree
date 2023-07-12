@@ -22,7 +22,7 @@ Route::post("/login",[UserController::class,'login']);
 Route::get("/products",[ProductController::class,'index']);
 // Route::get("/addToCart",[UserController::class,'cart']);
 // Route::post('/addToCart', 'CartController@addToCart')->name('addToCart');
-Route::post("/addToCart", [CartController::class,'addToCart']);
+Route::post("/addToCart", [CartController::class, 'addToCart'])->name('addToCart');
 
 
 

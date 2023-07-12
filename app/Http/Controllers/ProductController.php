@@ -8,7 +8,7 @@ use App\Models\Product;
 use Session;
 class ProductController extends Controller
 {
-    function index()
+     function index()
     {
         $products = Product::all();
         return view('product', ['products'=>$products]);
