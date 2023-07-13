@@ -14,17 +14,16 @@ use App\Http\Controllers\CartController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/',function (){
-    return "<center><h1>Please use /login to Access the Product</h1></center>";
-});
+// Route::get('/',function (){
+//     return "<center><h1>Please use /login to Access the Product</h1></center>";
+// });
 Route::get('/login', function () {
     return view('login');
 });
 Route::post("/login",[UserController::class,'login']);
-Route::get("/products",[ProductController::class,'index']);
-// Route::get("/addToCart",[UserController::class,'cart']);
-// Route::post('/addToCart', 'CartController@addToCart')->name('addToCart');
+Route::get("/products",[ProductController::class,'index'])->name('products');
 Route::post("/addToCart", [CartController::class, 'addToCart'])->name('addToCart');
+Route::get('/cart', [CartController::class, 'showCart'])->name('cart');
 
 
 

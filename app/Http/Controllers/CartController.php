@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Cart;
 use Session;
@@ -28,4 +28,20 @@ class CartController extends Controller
         $cart = Session::get('user');
         return Cart::where('customerId',$cart)->count();
     }
+
+    public function showCart()
+    {
+    // Retrieve the cart items based on the logged-in user or session data
+    $userId = Session::get('user');
+    // $cartItems = Cart::where('customerId', $userId)->get();
+    $cartItems = DB::table('carts')
+        ->join('products', 'carts.productId', '=', 'products.id')
+        ->select('products.name', 'products.price', 'carts.quantity', 'products.gallery')
+        ->where('carts.customerId', $userId)
+        ->get();
+    // Pass the cart items to the view
+    return view('cart', ['cartItems' => $cartItems]);
+    }
+
+
 }
